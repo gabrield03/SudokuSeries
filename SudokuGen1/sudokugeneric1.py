@@ -1,25 +1,18 @@
 import pandas as pd
 
 # Define the file URL
-file_url = "https://raw.githubusercontent.com/gabrield03/SudokuSeries/refs/heads/main/Games/easySudokuPuzzles.txt"
+file_url = 'https://raw.githubusercontent.com/gabrield03/SudokuSeries/refs/heads/main/Games/easySudokuPuzzles.txt'
 
 # Read the file using pandas
 df = pd.read_csv(file_url, header=None)
-print(df.head())  # Print first few lines of the file
-
 
 # Select a game
 # There is 1 puzzle on each line of the file. 1011 lines (games)
-count = 0
-game = [0]
+game = df.iloc[23].tolist()
 
-with open(easy_puzzles, 'r') as file:
-  for line in file:
-    count += 1
-    if count == 1:
-      game = line
+game = game[0]
+game = list(game)
 
-game = list(game[:-1])
 
 for i in range(len(game)):
   if game[i] == '.':
@@ -27,7 +20,7 @@ for i in range(len(game)):
   else:
     game[i] = int(game[i])
 
-print(game)
+#print(game)
 
 
 
@@ -62,7 +55,7 @@ def draw_board(currIndices):
     else:
       print(f'  {currIndices[i]} |', end = '')
 
-draw_board(game)
+#draw_board(game)
 
 
 # Initialize the Game Board Values and Possible Values
@@ -457,12 +450,12 @@ def identify_misc_groupings(game, boardPossibilities):
 
 # Solving the Board
 def solve_board(game):
-  DEBUG = True
+  DEBUG = False
   boardComplete = False
   iterations = 0
 
   # initial board
-  print('initial board')
+  print('\n\n~~~~~~~~~~~ Initial Board ~~~~~~~~~~~')
   draw_board(game)
 
   # Create the board of possibilities:
@@ -528,11 +521,13 @@ def solve_board(game):
         print()
 
   if not boardComplete:
-    print('\nBoard could not be solved. Final board:\n')
-    draw_board(game)
+    print('\n\nBoard could not be solved.\n')
+    print('~~~~~~~~~~~~ Final Board ~~~~~~~~~~~~')
 
   else:
-    print('\nThe board was solved! Final board:\n')
-    draw_board(game)
+    print('\n\nThe board was solved!\n')
+    print('~~~~~~~~~~~~ Final Board ~~~~~~~~~~~~')
+
+  draw_board(game)
 
 solve_board(game)

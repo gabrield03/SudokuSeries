@@ -104,8 +104,9 @@ def highlight_cell(rect):
 #         if rect.collidepoint(mouse_pos):
 #             highlight_cell(rect)
 
-
-
+# Button to auto-solve the game
+solve_button_rect = pygame.Rect(425, 900, 150, 40)
+solve_button_color = 'lightblue'
             
         
 while True:
@@ -123,6 +124,15 @@ while True:
         window.blit(border_vertical_dark, (i, 175))
         window.blit(border_horizontal_dark, (175, i))
 
+
+    # Draw the "Auto solve" button
+    pygame.draw.rect(window, solve_button_color, solve_button_rect)
+    font = pygame.font.Font(None, 36)
+    button_text = font.render('Auto-Solve', True, 'black')
+    window.blit(button_text, (425, 900))
+
+
+
     window.blit(num_surf_1, num_rect_1)
     window.blit(num_surf_2, num_rect_2)
     window.blit(num_surf_3, num_rect_3)
@@ -132,6 +142,9 @@ while True:
     window.blit(num_surf_7, num_rect_7)
     window.blit(num_surf_8, num_rect_8)
     window.blit(num_surf_9, num_rect_9)
+
+
+    #
 
     # update everything
     pygame.display.update()
